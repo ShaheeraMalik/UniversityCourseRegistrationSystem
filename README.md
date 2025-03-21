@@ -160,7 +160,7 @@ A modern web-based prototype for course registration, built with **Node.js**, **
 
 **Repository Name**: `UniversityCourseRegistrationSystem`
 
-**Repository Link**: [GitHub Repo](https://github.com/YourUsername/YourRepoName)
+**Repository Link**: [GitHub Repo](https://github.com/ShaheeraMalik/UniversityCourseRegistrationSystem.git)
 
 ---
 
