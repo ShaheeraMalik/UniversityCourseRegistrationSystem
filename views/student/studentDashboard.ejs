@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="/css/studentDashboard.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome, <%= student.name %> (Roll No: <%= student.rollNumber %>)</h1>
+    <nav>
+      <a href="/auth/logout">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Filters Section -->
+    <section id="filters">
+      <h2>Filter Available Courses</h2>
+      <form id="filterForm">
+        <!-- Department: user can type or pick from suggestions -->
+        <label for="department">Department:</label>
+        <input 
+          type="text" 
+          id="department" 
+          name="department"
+          placeholder="Enter or pick department"
+          list="deptList"
+        >
+        <datalist id="deptList">
+          <option value="Computer Science">
+          <option value="Software Engineering">
+          <option value="Artificial Intelligence">
+          <!-- Add more suggestions as needed -->
+        </datalist>
+    
+        <!-- Course Level: user can type or pick from suggestions -->
+        <label for="courseLevel">Course Level:</label>
+        <input 
+          type="text" 
+          id="courseLevel" 
+          name="courseLevel"
+          placeholder="Enter or pick course level"
+          list="levelList"
+        >
+        <datalist id="levelList">
+          <option value="100">
+          <option value="200">
+          <option value="300">
+          <option value="400">
+          <!-- Add more suggestions if desired -->
+        </datalist>
+    
+        <!-- Time of Day remains a select -->
+        <label for="timeOfDay">Time of Day:</label>
+        <select id="timeOfDay" name="timeOfDay">
+          <option value="">All</option>
+          <option value="morning">Morning (08:00-12:00)</option>
+          <option value="afternoon">Afternoon (12:00-15:00)</option>
+        </select>
+    
+        <button type="button" onclick="applyFilters()">Apply Filters</button>
+      </form>
+    </section>
+    
+
+    <!-- Available Courses Section -->
+    <section id="availableCourses">
+      <h2>Available Courses</h2>
+      <table id="coursesTable">
+        <thead>
+          <tr>
+            <th>Course Name</th>
+            <th>Course Code</th>
+            <th>Department</th>
+            <th>Course Level</th>
+            <th>Description</th>
+            <th>Schedule</th>
+            <th>Prerequisites</th>
+            <th>Seats Available</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% courses.forEach(course => { %>
+            <tr data-department="<%= course.department %>" 
+                data-level="<%= course.courseLevel %>" 
+                data-start="<%= course.startTime %>">
+              <td><%= course.courseName %></td>
+              <td><%= course.courseCode %></td>
+              <td><%= course.department %></td>
+              <td><%= course.courseLevel %></td>
+              <td><%= course.description %></td>
+              <td>
+                <% if (course.days && course.days.length > 0) { %>
+                  <%= course.days.join(", ") %><br>
+                  <%= course.startTime %> - <%= course.endTime %>
+                <% } else { %>
+                  N/A
+                <% } %>
+              </td>
+              <td>
+                <% if (course.prerequisites && course.prerequisites.length > 0) { %>
+                  <%= course.prerequisites.join(", ") %>
+                <% } else { %>
+                  None
+                <% } %>
+              </td>
+              <td class="seat-count" data-course-id="<%= course._id %>">
+                <%= course.capacity - (course.registeredStudents ? course.registeredStudents.length : 0) %>
+              </td>
+              <td>
+                <button onclick="registerCourse('<%= course._id %>')">Register</button>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- My Schedule Section -->
+    <section id="mySchedule">
+      <h2>My Weekly Schedule</h2>
+      <div id="calendar"></div>
+      <!-- The calendar grid is rendered by script.js -->
+    </section>
+  </main>
+
+  <!-- Remove the big inline script block. Instead, load your separate script file here: -->
+  <script src="/js/script.js"></script>
+</body>
+</html>

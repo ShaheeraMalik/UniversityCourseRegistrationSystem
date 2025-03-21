@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Override Registration for <%= student.name %></title>
+  <link rel="stylesheet" href="/css/admindashboardstyles.css">
+</head>
+<body>
+  <header>
+    <h1>Override Registration</h1>
+    <nav>
+      <a href="/admin/admindashboard">Back to Dashboard</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Student: <%= student.name %> (<%= student.rollNumber %>)</h2>
+    <p>Email: <%= student.email %></p>
+    <form action="/admin/student/override/<%= student._id %>" method="POST">
+      <div class="form-group">
+        <label for="courseCode">Course Code to Register:</label>
+        <input type="text" id="courseCode" name="courseCode" required placeholder="Enter Course Code">
+      </div>
+      <button type="submit">Override Registration</button>
+    </form>
+  </main>
+  <footer>
+    <p>&copy; <%= new Date().getFullYear() %> My University</p>
+  </footer>
+</body>
+</html>

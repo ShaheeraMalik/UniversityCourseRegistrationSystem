@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Course</title>
+  <link rel="stylesheet" href="/css/admindashboardstyles.css">
+</head>
+<body>
+  <header>
+    <h1>Update Course</h1>
+    <nav>
+      <a href="/admin/admindashboard">Back to Dashboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <% // Set default values for formData and conflictError if they aren't passed %>
+    <% var formData = typeof formData !== 'undefined' ? formData : {}; %>
+    <% var conflictError = typeof conflictError !== 'undefined' ? conflictError : ''; %>
+    
+    <% 
+      // Use formData if available, otherwise fall back to the existing course data
+      var cName = formData.courseName || course.courseName;
+      var cCode = formData.newCourseCode || course.courseCode; // newCourseCode is optional
+      var cDesc = formData.description || course.description;
+      var cCap = formData.capacity || course.capacity;
+      var cPrereqs = formData.prerequisites || (course.prerequisites ? course.prerequisites.join(', ') : '');
+      var cDays = formData.days || course.days;
+      var cStart = formData.startTime || course.startTime;
+      var cEnd = formData.endTime || course.endTime;
+    %>
+
+    <% if (conflictError) { %>
+      <div class="error-message" style="color:red; font-weight:bold;">
+        <%= conflictError %>
+      </div>
+    <% } %>
+
+    <form action="/admin/course/update/<%= course.courseCode %>" method="POST">
+      <div class="form-group">
+        <label for="courseName">Course Name:</label>
+        <input 
+          type="text" 
+          id="courseName" 
+          name="courseName" 
+          required
+          value="<%= cName %>">
+      </div>
+
+      <div class="form-group">
+        <label for="courseCode">Course Code:</label>
+        <!-- Display the original course code as read-only -->
+        <input 
+          type="text" 
+          id="courseCode" 
+          name="courseCode" 
+          value="<%= course.courseCode %>" 
+          readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="newCourseCode">New Course Code (optional):</label>
+        <input 
+          type="text" 
+          id="newCourseCode" 
+          name="newCourseCode" 
+          value="<%= formData.newCourseCode ? formData.newCourseCode : '' %>">
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea 
+          id="description" 
+          name="description" 
+          rows="3"><%= cDesc %></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="capacity">Capacity:</label>
+        <input 
+          type="number" 
+          id="capacity" 
+          name="capacity" 
+          required
+          value="<%= cCap %>">
+      </div>
+
+      <div class="form-group">
+        <label for="prerequisites">Prerequisites (comma separated):</label>
+        <input 
+          type="text" 
+          id="prerequisites" 
+          name="prerequisites"
+          value="<%= cPrereqs %>">
+      </div>
+
+      <div class="form-group">
+        <label>Days:</label>
+        <div class="checkbox-group">
+          <% const dayList = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']; %>
+          <% dayList.forEach(function(d) { %>
+            <label>
+              <input 
+                type="checkbox" 
+                name="days[]" 
+                value="<%= d %>"
+                <%= cDays && cDays.includes(d) ? 'checked' : '' %>>
+              <%= d %>
+            </label>
+          <% }); %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="startTime">Start Time:</label>
+        <input 
+          type="time" 
+          id="startTime" 
+          name="startTime" 
+          required
+          value="<%= cStart %>">
+      </div>
+
+      <div class="form-group">
+        <label for="endTime">End Time:</label>
+        <input 
+          type="time" 
+          id="endTime" 
+          name="endTime" 
+          required
+          value="<%= cEnd %>">
+      </div>
+
+      <button type="submit">Update Course</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; <%= new Date().getFullYear() %> My University</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Available Courses Report</title>
+  <link rel="stylesheet" href="/css/admindashboardstyles.css">
+</head>
+<body>
+  <header>
+    <h1>Courses with Available Seats</h1>
+    <nav>
+      <a href="/admin/admindashboard">Back to Dashboard</a>
+    </nav>
+  </header>
+  <main>
+    <% if (courses && courses.length > 0) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Course Name</th>
+            <th>Course Code</th>
+            <th>Capacity</th>
+            <th>Registered Students</th>
+            <th>Available Seats</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% courses.forEach(function(course) { %>
+            <tr>
+              <td><%= course.courseName %></td>
+              <td><%= course.courseCode %></td>
+              <td><%= course.capacity %></td>
+              <td><%= course.registeredStudents ? course.registeredStudents.length : 0 %></td>
+              <td><%= course.capacity - (course.registeredStudents ? course.registeredStudents.length : 0) %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>No courses with available seats found.</p>
+    <% } %>
+  </main>
+  <footer>
+    <p>&copy; <%= new Date().getFullYear() %> My University</p>
+  </footer>
+</body>
+</html>

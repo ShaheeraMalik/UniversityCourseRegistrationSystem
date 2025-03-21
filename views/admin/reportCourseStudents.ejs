@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Course Students Report</title>
+  <link rel="stylesheet" href="/css/admindashboardstyles.css">
+</head>
+<body>
+  <header>
+    <h1>Students Registered for <%= course.courseName %> (<%= course.courseCode %>)</h1>
+    <nav>
+      <a href="/admin/admindashboard">Back to Dashboard</a>
+    </nav>
+  </header>
+  <main>
+    <% if (students && students.length > 0) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Roll Number</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.forEach(function(student) { %>
+            <tr>
+              <td><%= student.name %></td>
+              <td><%= student.rollNumber %></td>
+              <td><%= student.email %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>No students are registered for this course.</p>
+    <% } %>
+  </main>
+  <footer>
+    <p>&copy; <%= new Date().getFullYear() %> My University</p>
+  </footer>
+</body>
+</html>

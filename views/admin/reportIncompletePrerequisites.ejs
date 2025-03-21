@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Incomplete Prerequisites Report</title>
+  <link rel="stylesheet" href="/css/admindashboardstyles.css">
+</head>
+<body>
+  <header>
+    <h1>Students With Incomplete Prerequisites</h1>
+    <nav>
+      <a href="/admin/admindashboard">Back to Dashboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <% if (students && students.length > 0) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Roll Number</th>
+            <th>Email</th>
+            <th>Courses Missing Prereqs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.forEach(function(student) { %>
+            <tr>
+              <td><%= student.name %></td>
+              <td><%= student.rollNumber %></td>
+              <td><%= student.email %></td>
+              <td>
+                <% if (student.incompleteCourses && student.incompleteCourses.length > 0) { %>
+                  <ul>
+                    <% student.incompleteCourses.forEach(function(courseName) { %>
+                      <li><%= courseName %></li>
+                    <% }); %>
+                  </ul>
+                <% } else { %>
+                  None
+                <% } %>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>No students found with incomplete prerequisites.</p>
+    <% } %>
+  </main>
+
+  <footer>
+    <p>&copy; <%= new Date().getFullYear() %> My University</p>
+  </footer>
+</body>
+</html>

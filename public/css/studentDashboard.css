@@ -1,0 +1,359 @@
+/* ===== BASE STYLES ===== */
+:root {
+  --primary: #6366f1;         /* Indigo */
+  --primary-dark: #4f46e5;    /* Darker indigo */
+  --primary-light: #a5b4fc;   /* Light indigo */
+  --secondary: #0ea5e9;       /* Sky blue / Teal */
+  --secondary-dark: #0284c7;  /* Darker teal */
+  --secondary-light: #bae6fd; /* Light teal */
+  --accent: #06b6d4;          /* Cyan */
+  --success: #10b981;         /* Emerald */
+  --danger: #ef4444;          /* Red */
+  --warning: #f59e0b;         /* Amber */
+  --info: #3b82f6;            /* Blue */
+  --light: #f9fafb;           /* Gray 50 */
+  --dark: #1f2937;            /* Gray 800 */
+  --gray: #6b7280;            /* Gray 500 */
+  --gray-light: #e5e7eb;      /* Gray 200 */
+  --border-radius: 8px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--dark);
+  background-color: var(--light);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== HEADER & NAVIGATION ===== */
+header {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 1.25rem 2.5rem;
+  box-shadow: var(--box-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  font-weight: 600;
+  background-color: var(--secondary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav a:hover {
+  background-color: var(--secondary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+section {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-top: 4px solid var(--primary);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.4s ease-out;
+}
+
+section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-light);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+/* ===== FILTERS SECTION ===== */
+#filters form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+#filters label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+#filters select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--gray-light);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: var(--transition);
+  background-color: white;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+}
+
+#filters select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+#filters button {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(99, 102, 241, 0.25);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.025em;
+  grid-column: 1 / -1;
+  justify-self: end;
+  max-width: 200px;
+}
+
+#filters button:hover {
+  background: linear-gradient(to right, var(--primary-dark), var(--secondary-dark));
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(99, 102, 241, 0.3);
+}
+
+#filters button:active {
+  transform: translateY(-1px);
+}
+
+/* Matches the style of #filters select */
+#filters input[type="text"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--gray-light);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: var(--transition);
+  background-color: white;
+  appearance: none; /* Removes default browser styling */
+}
+
+/* Focus outline similar to the select focus */
+#filters input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+/* Optional placeholder styling */
+#filters input[type="text"]::placeholder {
+  color: var(--gray);
+  opacity: 0.7;
+}
+
+/* ===== AVAILABLE COURSES SECTION ===== */
+#availableCourses {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1rem 0;
+  background-color: white;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+thead {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  color: white;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+th {
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+tbody tr:hover {
+  background-color: rgba(99, 102, 241, 0.05);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.seat-count {
+  font-weight: 600;
+  text-align: center;
+}
+
+td button {
+  background: linear-gradient(to right, var(--success), var(--accent));
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.25);
+  white-space: nowrap;
+}
+
+td button:hover {
+  background: linear-gradient(to right, #0d9488, #0891b2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+}
+
+td button:active {
+  transform: translateY(-1px);
+}
+
+/******************************
+ * My Schedule Table ( #calendar )
+ ******************************/
+
+/* Container around the schedule, if needed */
+#mySchedule {
+  padding-bottom: 1.5rem; 
+}
+
+/* #calendar is just a container DIV;
+   the actual table is built inside it by your script */
+#calendar {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+/* Table styling for the schedule */
+#calendar table {
+  width: 100%;
+  border-collapse: collapse; /* No gaps between cells */
+  border-spacing: 0;
+  margin: 1rem 0;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+#calendar thead {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  color: white;
+}
+
+#calendar th,
+#calendar td {
+  padding: 0.75rem 1rem;
+  text-align: center; 
+  border-bottom: 1px solid var(--gray-light);
+}
+
+#calendar th {
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+#calendar tbody tr:hover {
+  background-color: rgba(99, 102, 241, 0.05);
+}
+
+#calendar tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Example highlight for a "registered" cell (optional) */
+#calendar td.registered {
+  background-color: #d1ffd1; /* Light green highlight */
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  #calendar {
+    grid-template-columns: 10px repeat(5, 1fr);
+    font-size: 0.75rem;
+  }
+  .calendar-cell {
+    padding: 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #calendar {
+    grid-template-columns: 50px repeat(5, 1fr);
+    font-size: 0.7rem;
+  }
+  .calendar-cell {
+    padding: 0.3rem;
+  }
+}

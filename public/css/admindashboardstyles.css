@@ -1,0 +1,470 @@
+/* ===== BASE STYLES ===== */
+:root {
+    /* Updated color palette - replaced pink with teal */
+    --primary: #6366f1;         /* Indigo */
+    --primary-dark: #4f46e5;    /* Darker indigo */
+    --primary-light: #a5b4fc;   /* Light indigo */
+    --secondary: #0ea5e9;       /* Sky blue / Teal */
+    --secondary-dark: #0284c7;  /* Darker teal */
+    --secondary-light: #bae6fd; /* Light teal */
+    --accent: #06b6d4;          /* Cyan */
+    --success: #10b981;         /* Emerald */
+    --danger: #ef4444;          /* Red */
+    --warning: #f59e0b;         /* Amber */
+    --info: #3b82f6;            /* Blue */
+    --light: #f9fafb;           /* Gray 50 */
+    --dark: #1f2937;            /* Gray 800 */
+    --gray: #6b7280;            /* Gray 500 */
+    --gray-light: #e5e7eb;      /* Gray 200 */
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #374151; /* Gray 700 */
+    background-color: #f3f4f6; /* Gray 100 */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* ===== HEADER & NAVIGATION ===== */
+  header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 1.25rem 2.5rem;
+    box-shadow: var(--box-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  header h1 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  /* This targets all nav items except the last one (logout) */
+  nav ul li:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+  
+  /* This specifically targets the logout link's parent li */
+  nav ul li:last-child {
+    margin-left: auto; /* Push to the right */
+  }
+  
+  /* Style for the logout link */
+  nav ul li:last-child a {
+    background-color: var(--secondary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  nav ul li:last-child a:hover {
+    background-color: var(--secondary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    font-weight: 500;
+    display: inline-block;
+  }
+  
+  nav a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+  
+  /* ===== MAIN CONTENT ===== */
+  main {
+    flex: 1;
+    padding: 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  section {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
+    border-top: 4px solid var(--primary);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  
+  h2 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--primary-light);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+  
+  h3 {
+    color: var(--secondary);
+    margin: 1.75rem 0 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  
+  /* ===== FORMS ===== */
+  form {
+    background-color: var(--light);
+    padding: 1.75rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 2.5rem;
+    border-left: 4px solid var(--accent);
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark);
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="time"],
+  input[type="email"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 0.875rem 1.125rem;
+    border: 1px solid var(--gray-light);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+    background-color: white;
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  }
+  
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-top: 0.75rem;
+  }
+  
+  .checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    cursor: pointer;
+  }
+  
+  .checkbox-group input[type="checkbox"] {
+    margin-right: 0.5rem;
+    cursor: pointer;
+    width: 1.125rem;
+    height: 1.125rem;
+    accent-color: var(--primary);
+  }
+  
+  /* Updated button styles */
+  button {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    padding: 0.875rem 1.75rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(99, 102, 241, 0.25);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.025em;
+  }
+  
+  button:hover {
+    background: linear-gradient(to right, var(--primary-dark), var(--secondary-dark));
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(99, 102, 241, 0.3);
+  }
+  
+  button:active {
+    transform: translateY(-1px);
+  }
+  
+  /* Button shine effect */
+  button::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(45deg);
+    transition: all 0.5s;
+    opacity: 0;
+  }
+  
+  button:hover::after {
+    animation: shine 1.5s;
+  }
+  
+  @keyframes shine {
+    0% {
+      left: -100%;
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.1;
+    }
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
+  }
+  
+  /* ===== TABLES ===== */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1.5rem 0 2.5rem;
+    background-color: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  thead {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: white;
+  }
+  
+  th, td {
+    padding: 1.125rem;
+    text-align: left;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  
+  th {
+    font-weight: 600;
+    letter-spacing: 0.025em;
+  }
+  
+  tbody tr:hover {
+    background-color: rgba(99, 102, 241, 0.05);
+  }
+  
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  /* Table actions */
+  td a {
+    color: var(--primary);
+    text-decoration: none;
+    margin-right: 0.75rem;
+    transition: var(--transition);
+    font-weight: 500;
+  }
+  
+  td a:hover {
+    color: var(--secondary);
+    text-decoration: underline;
+  }
+  
+  /* ===== LISTS IN TABLES ===== */
+  td ul {
+    list-style-position: inside;
+    padding-left: 0;
+  }
+  
+  td li {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* ===== REPORT SECTION ===== */
+  .report-group {
+    background-color: var(--light);
+    padding: 1.75rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.75rem;
+    border-left: 4px solid var(--info);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .report-group:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  }
+  
+  .report-group h3 {
+    margin-top: 0;
+    color: var(--info);
+  }
+  
+  .report-group button {
+    margin-top: 1.25rem;
+    background: linear-gradient(to right, var(--info), var(--secondary));
+  }
+  
+  .report-group button:hover {
+    background: linear-gradient(to right, var(--info), var(--secondary-dark));
+  }
+  
+  /* ===== ERROR MESSAGES ===== */
+  .error-message {
+    background-color: rgba(239, 68, 68, 0.1);
+    border-left: 4px solid var(--danger);
+    padding: 1.125rem;
+    margin-bottom: 1.75rem;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  }
+  
+  /* ===== FOOTER ===== */
+  footer {
+    background: linear-gradient(to right, var(--secondary), var(--accent));
+    color: white;
+    text-align: center;
+    padding: 1.75rem;
+    margin-top: auto;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+  }
+  
+  /* ===== RESPONSIVE DESIGN ===== */
+  @media (max-width: 992px) {
+    main {
+      padding: 1.75rem;
+    }
+    
+    section {
+      padding: 1.75rem;
+    }
+    
+    table {
+      display: block;
+      overflow-x: auto;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    header {
+      padding: 1.25rem;
+    }
+    
+    nav ul {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    /* Keep logout at the bottom on mobile */
+    nav ul li:last-child {
+      margin-left: 0;
+      margin-top: 0.75rem;
+    }
+    
+    nav a {
+      display: block;
+    }
+    
+    .checkbox-group {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    form, .report-group {
+      padding: 1.25rem;
+    }
+  }
+  
+  /* ===== UTILITY CLASSES ===== */
+  .text-center {
+    text-align: center;
+  }
+  
+  .mt-2 {
+    margin-top: 2rem;
+  }
+  
+  .mb-2 {
+    margin-bottom: 2rem;
+  }
+  
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  section {
+    animation: fadeIn 0.4s ease-out;
+  }
+  
+  /* ===== SCROLLBAR STYLING ===== */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--gray-light);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--primary-light), var(--secondary-light));
+    border-radius: 4px;
+    border: 2px solid var(--gray-light);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(var(--primary), var(--secondary));
+  }
